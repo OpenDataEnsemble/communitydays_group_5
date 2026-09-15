@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "odometer": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2000000,
+      "title": "Odometer in kilometres"
+    },
+    "service": {
+      "type": "string",
+      "enum": [
+        "Inspection",
+        "Oil change",
+        "Tyres",
+        "Repair"
+      ],
+      "title": "Service performed"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Service notes",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "entity_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "entity_id",
+    "odometer",
+    "service",
+    "notes"
+  ]
+}

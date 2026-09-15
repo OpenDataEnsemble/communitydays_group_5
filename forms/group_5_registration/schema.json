@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Vehicle nickname",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "model": {
+      "type": "string",
+      "title": "Make and model",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "Car",
+        "Motorcycle",
+        "Minibus"
+      ],
+      "title": "Vehicle type"
+    }
+  },
+  "required": [
+    "name",
+    "model",
+    "kind"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "scope": "#/properties/odometer",
+      "label": "Odometer in kilometres"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/service",
+      "label": "Service performed"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/notes",
+      "label": "Service notes"
+    }
+  ]
+}

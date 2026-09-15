@@ -1,0 +1,55 @@
+{
+  "title": "Automotive App",
+  "theme": "Automotive",
+  "entity": "vehicle",
+  "plural": "vehicles",
+  "registerLabel": "Register vehicle",
+  "followUpLabel": "Record a service",
+  "registrationForm": "group_5_registration",
+  "followUpForm": "group_5_followup",
+  "description": "Keep community vehicles moving with a clear registration and service history.",
+  "accent": "#a44b18",
+  "background": "#fff3e8",
+  "columns": [
+    {
+      "key": "name",
+      "label": "Vehicle nickname"
+    },
+    {
+      "key": "model",
+      "label": "Make and model"
+    },
+    {
+      "key": "kind",
+      "label": "Vehicle type"
+    }
+  ],
+  "registrationFields": [
+    {
+      "key": "name",
+      "label": "Vehicle nickname"
+    },
+    {
+      "key": "model",
+      "label": "Make and model"
+    },
+    {
+      "key": "kind",
+      "label": "Vehicle type"
+    }
+  ],
+  "followUpFields": [
+    {
+      "key": "odometer",
+      "label": "Odometer in kilometres"
+    },
+    {
+      "key": "service",
+      "label": "Service performed"
+    },
+    {
+      "key": "notes",
+      "label": "Service notes"
+    }
+  ]
+}
