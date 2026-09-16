@@ -15,6 +15,11 @@
       "type": "Control",
       "scope": "#/properties/kind",
       "label": "Vehicle type"
+    },
+    {
+      "type": "Control",
+      "scope": "#/properties/description",
+      "label": "Vehicle description"
     }
   ]
 }

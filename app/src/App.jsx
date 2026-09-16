@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import config from './theme.json';
 import useObservations from './useObservations.js';
@@ -24,7 +24,12 @@ function Fields({ fields, data }) {
 function RecordPage() {
   const { entityId } = useParams();
   const { api, registrations, followUps, loading, error, formError, opening, refresh, openForm } = useObservations(entityId);
+  const [searchTerm, setSearchTerm] = useState('');
   const record = registrations.find((item) => item.observationId === entityId);
+  const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+  const filteredRegistrations = registrations.filter((item) =>
+    String(item.data?.name || '').toLowerCase().includes(normalizedSearchTerm),
+  );
   const disabled = !api || opening;
   const registrationFields = config.registrationFields.some(({ key }) => key === 'name')
     ? config.registrationFields
@@ -67,20 +72,32 @@ function RecordPage() {
         {formError && <p className="error" role="alert">Could not complete the form. {formError} Please try the form button again.</p>}
         {!entityId ? (
           registrations.length > 0 ? (
-            <div className="table-scroll" role="region" aria-label={`${config.plural} list`} tabIndex={0}>
-              <table>
-                <caption>Saved {config.plural}</caption>
-                <thead><tr>{config.columns.map(({ key, label }) => <th scope="col" key={key}>{label}</th>)}<th scope="col">Details</th></tr></thead>
-                <tbody>
-                  {registrations.map((item) => (
-                    <tr key={item.observationId}>
-                      {config.columns.map(({ key }) => <td key={key}>{display(item.data?.[key])}</td>)}
-                      <td><Link className="detail-link" to={`/details/${encodeURIComponent(item.observationId)}`} aria-label={`View details for ${display(item.data?.name)}`}>View details →</Link></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <>
+              <label className="search-label" htmlFor="registration-search">Search {config.plural}</label>
+              <input
+                id="registration-search"
+                type="search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+              />
+              <p className="search-status" role="status">{filteredRegistrations.length} matching out of {registrations.length} registered</p>
+              {filteredRegistrations.length > 0 ? (
+                <div className="table-scroll" role="region" aria-label={`${config.plural} list`} tabIndex={0}>
+                  <table>
+                    <caption>Saved {config.plural}</caption>
+                    <thead><tr>{config.columns.map(({ key, label }) => <th scope="col" key={key}>{label}</th>)}<th scope="col">Details</th></tr></thead>
+                    <tbody>
+                      {filteredRegistrations.map((item) => (
+                        <tr key={item.observationId}>
+                          {config.columns.map(({ key }) => <td key={key}>{display(item.data?.[key])}</td>)}
+                          <td><Link className="detail-link" to={`/details/${encodeURIComponent(item.observationId)}`} aria-label={`View details for ${display(item.data?.name)}`}>View details →</Link></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : <p className="empty">No {config.plural} match “{searchTerm.trim()}”.</p>}
+            </>
           ) : !loading && !error && api && <p className="empty">No {config.plural} yet. Select “{config.registerLabel}” to get started.</p>
         ) : record ? (
           <>
@@ -124,7 +141,7 @@ export default function App() {
       <main id="main-content" tabIndex={-1}>
         <section className="hero" aria-labelledby="app-title">
           <div><p className="eyebrow">{config.theme}</p><h1 id="app-title">{config.title}</h1><p>{config.description}</p></div>
-          <img src="./assets/theme.svg" alt="" width="220" height="180" />
+          <img src="./assets/TAXI.jpeg" alt="" width="220" height="180" />
         </section>
         <Routes>
           <Route path="/" element={<RecordPage />} />
