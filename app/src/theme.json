@@ -1,5 +1,5 @@
 {
-  "title": "Automotive App",
+  "title": "MotoDoCX",
   "theme": "Automotive",
   "entity": "vehicle",
   "plural": "vehicles",
@@ -7,9 +7,9 @@
   "followUpLabel": "Record a service",
   "registrationForm": "group_5_registration",
   "followUpForm": "group_5_followup",
-  "description": "Keep community vehicles moving with a clear registration and service history.",
-  "accent": "#a44b18",
-  "background": "#fff3e8",
+  "description": "Register your vehicle, view its details, and keep track of its service history.",
+  "accent": "#1E6FD9",
+  "background": "#F5F7FA",
   "columns": [
     {
       "key": "name",

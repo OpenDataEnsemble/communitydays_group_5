@@ -124,7 +124,7 @@ export default function App() {
       <main id="main-content" tabIndex={-1}>
         <section className="hero" aria-labelledby="app-title">
           <div><p className="eyebrow">{config.theme}</p><h1 id="app-title">{config.title}</h1><p>{config.description}</p></div>
-          <img src="./assets/theme.svg" alt="" width="220" height="180" />
+          <img src="./assets/TAXI.jpeg" alt="" width="220" height="180" />
         </section>
         <Routes>
           <Route path="/" element={<RecordPage />} />
