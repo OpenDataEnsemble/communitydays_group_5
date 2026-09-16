@@ -26,6 +26,11 @@
   ],
   "registrationFields": [
     {
+      "key": "description",
+      "label": "short description"
+    },
+
+    {
       "key": "name",
       "label": "Vehicle nickname"
     },
